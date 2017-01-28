@@ -4,5 +4,6 @@
     Author     : Suraj
 --%>
 
-Admin Login  is Successful, 
+Welcome Admin, 
 Please Logout Here <a href='logout.jsp'>Go to Logout</a>
+
