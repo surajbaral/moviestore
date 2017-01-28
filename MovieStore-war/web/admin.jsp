@@ -7,3 +7,7 @@
 Welcome Admin, 
 Please Logout Here <a href='logout.jsp'>Go to Logout</a>
 
+Enter movie section <a href='enterMovie.jsp'> Add movie into Gallery!</a>
+
+
+
