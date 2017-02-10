@@ -14,10 +14,10 @@
     <body>
         <form method="post" action="movieregistration.jsp">
             <center>
-            <table border="1" width="30%" cellpadding="5">
+            <table border="30" width="80%" cellpadding="7">
                 <thead>
                     <tr>
-                        <th colspan="2">Enter Information Here</th>
+                        <th colspan="2">Enter Movie Information Here</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,13 +33,18 @@
                         <td>Price</td>
                         <td><input type="text" name="movieprice" value="" /></td>
                     </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td><input type="text" name="moviequantity" value="" /></td>
+                    </tr>
+                   
                    
                     <tr>
                         <td><input type="submit" value="Submit" /></td>
                         <td><input type="reset" value="Reset" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Already registered!! <a href="home.jsp">Login Here</a></td>
+                        <td colspan="2">Already registered!! <a href="admin.jsp">BackToAdminPage</a></td>
                     </tr>
                 </tbody>
             </table>
