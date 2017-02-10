@@ -14,7 +14,7 @@
     <body>
         <form method="post" action="registration.jsp">
             <center>
-            <table border="1" width="30%" cellpadding="5">
+            <table border="19" width="30%" cellpadding="5">
                 <thead>
                     <tr>
                         <th colspan="2">Enter Information Here</th>
@@ -52,5 +52,19 @@
             </table>
             </center>
         </form>
+        <style>
+            body{
+                background: orange;
+            }
+            td{
+                background-color: yellowgreen;
+            }
+            tr{
+                background-color: blue; 
+            }
+            input{
+                background-color: grey;
+            }
+        </style>  
     </body>
 </html>
