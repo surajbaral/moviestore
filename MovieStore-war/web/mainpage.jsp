@@ -81,6 +81,7 @@ if(request.getParameter("search")!=null){
         <INPUT type="hidden" name="id" value="<%= rs.getString(1)%>"/>
         <input type="submit" value="Order" />
     </form></td>
+
 </TR>
 <% } %>
         </table>
