@@ -8,7 +8,7 @@
 <BODY background="picture/movie.jpg"></BODY>
 
 <body>
-    Welcome User; 
+    Welcome <br/> 
 Please Logout Here <a href='logout.jsp'>Go to Logout</a>
         <h1>Welcome to Your Movie World !</h1>
         <h2>Book a Movie</h2>
@@ -20,12 +20,12 @@ Please Logout Here <a href='logout.jsp'>Go to Logout</a>
                      <option value="Comedy">Comedy</option>
                       <option value="Romantic">Romance</option>
                        <option value="Thriller">Thriller</option>
-                </select>
+                </select> <br/>
 
 
-                <label for="Movie Name">Movie Name: </label>
+                <br/><label for="Movie Name"><a>Movie Name: </A>></label>
                 <p><input id="movieName" type="Text" name="movieName" /></p>
-                <label for="Movie Price">Movie Price </label>
+                <label for="Movie Price"><a>Movie Price </A></label>
                 <p><input id="moviePrice" type="Text" name="moviePrice" /></p>                
             <p><input type="Submit" name="search" value="Search" /></p>
             </form>
@@ -76,11 +76,21 @@ if(request.getParameter("search")!=null){
 <TD><%=  rs.getString(1)%></TD>
 <TD><%=  rs.getString(2)%></TD>
 <TD><%= rs.getString(3)%></TD>
-<TD><%= rs.getString(4)%></TD>
-<td><form method="post" action="cart.jsp" name="order">
-        <INPUT type="hidden" name="id" value="<%= rs.getString(1)%>"/>
-        <input type="submit" value="Order" />
-    </form></td>
+<TD><%= rs.getInt(4)%></TD>
+<td>
+    <form method="post" action="Addtocart" >
+        <INPUT type="hidden" name="mprice" value="<%= rs.getInt(4)%>"/>
+        <INPUT type="hidden" name="mname" value="<%= rs.getString(2)%>"/>
+        <input type="submit" value="Order" value="${rs.getString(2)}" />
+        
+    </form>
+
+
+<!--<form method ="get" action="cart.jsp">
+<input type="text" name="uname">
+<input type="submit" value="go" ><br/>
+</form>-->
+</td>
 
 </TR>
 <% } %>

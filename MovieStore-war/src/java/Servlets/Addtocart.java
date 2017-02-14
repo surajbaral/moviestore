@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logic.*;
 
+
 /**
  *
  * @author Suraj
@@ -32,8 +33,11 @@ public class Addtocart extends HttpServlet {
           shoppingCart = new Cart();
           session.setAttribute("cart", shoppingCart);
         }
-        String name = request.getParameter("moviename");
-        Integer price = Integer.parseInt(request.getParameter("price"));
+       
+       String name = request.getParameter("mname");
+       ///tring name = "Superman";
+       Integer price = Integer.parseInt(request.getParameter("mprice")); 
+        //Integer price = Integer.parseInt(request.getParameter("movieprice"));
         shoppingCart.order(name, price);
         session.setAttribute("cart", shoppingCart);
         try (PrintWriter out = response.getWriter()) {
@@ -47,12 +51,13 @@ public class Addtocart extends HttpServlet {
             out.println("<h1>Movie successfully added to cart </h1>");
             out.println("<form action='mainpage.jsp'>Add more movie<input type='submit' value='go'></form>");
             out.println("<hr>");
-            out.println("<h2>Cart</h2>");
+            out.println("<h2>Your Cart</h2>");
             HashMap<String, Integer> items = shoppingCart.getCartItems();
             out.println("<table border='1px'>");
-             
+          
             for(String key: items.keySet()){
                 out.println("<tr><td>"+key+" - </td><td>"+"$"+items.get(key)+"</td></tr>");
+              
             }
             out.println("<table>");
             out.println("</body>");

@@ -17,7 +17,7 @@
      
     <body>
          <h1>Book Your Movie </h1>
-        <form method="post" action="login.jsp">
+        <form method="post" action="mainpage.jsp">
             <center>
             <table border="30" width="65%" cellpadding="3">
                 <thead>

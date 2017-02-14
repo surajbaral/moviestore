@@ -8,20 +8,17 @@ package Servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
-import javax.servlet.http.HttpSession;
-import logic.*;
-
+import java.sql.*;
+//import java.Servlets.*;
 /**
+ * 
  *
  * @author Suraj
  */
-@WebServlet(name = "ShoppingCart", urlPatterns = {"/ShoppingCart"})
-public class ShoppingCart extends HttpServlet {
+public class MailApp extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,23 +29,42 @@ public class ShoppingCart extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+     //Database Connection to retrieve user's email need to be done...
+  
+    
+         
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        
+//        
+//        Connection con = null;
+//         Statement stmt = null;
+//         ResultSet rs = null;
+//
+//        con = ConnectionManager.getConnection();
+//        stmt = con.createStatement();
+//        rs = stmt.executeQuery("select * from movies;");
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShoppingCart</title>");            
+            out.println("<title>Servlet MailApp</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShoppingCart at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet MailApp at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
     }
 
+   
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -61,18 +77,7 @@ public class ShoppingCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        String action = request.getParameter("action");
-        //ProductModel pm = new ProductModel(); 
-        HttpSession session = request.getSession();
-        if(action.equals("Order")){
-            if (session.getAttribute("cart")==null){
-              //  List <Movie> cart = new ArrayList<Movie>();
-                
-            }else{
-                
-            }
-        }
+        //processRequest(request, response);
     }
 
     /**
@@ -83,11 +88,34 @@ public class ShoppingCart extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    
+       
+       
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+      
+        String mname = request.getParameter("moviename");
+       
+       String to = "suraj3402.sb@gmail.com";
+       //String to ="katmanlukash@gmail.com";
+//        String to = request.getParameter("to");
+        String CC = "govindbaral89@gmail.com";
+//        String CC1 = "katmanlukash@gmail.com";// must add multiple users in CC
+        String subject = "Movie Alert !!";
+//        String subject = request.getParameter("subject");
+        String message =  "This mail is to notify you about the addition of new movie____"+ mname +". Feel free to visit by..";
+//        String message =  request.getParameter("message");
+        String user = "moooviestoreee@gmail.com";
+//        String user = request.getParameter("user");
+        String pass = "Bookmovie";
+        SendMail.send(to,CC,subject, message, user, pass);
+        out.println("Mail sent successfully");
+    }   
+
 
     /**
      * Returns a short description of the servlet.

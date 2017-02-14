@@ -41,14 +41,19 @@
                    
                     <tr>
                         <td><input type="submit" value="Submit" /></td>
-                        <td><input type="reset" value="Reset" /></td>
+                        <td><input type="reset" value="Reset" />&nbsp;&nbsp;&nbsp;<input type="submit" value="sendMail" onclick="form.action='MailApp';"></td>
+                       
                     </tr>
                     <tr>
                         <td colspan="2">Already registered!! <a href="admin.jsp">BackToAdminPage</a></td>
-                    </tr>
+                        
                 </tbody>
             </table>
             </center>
         </form>
+            
+                        
+                    </tr>        
+        <!--<td colspan="3"><input type="submit" value="SentMail" action="MailApp" /></td>-->
     </body>
 </html>

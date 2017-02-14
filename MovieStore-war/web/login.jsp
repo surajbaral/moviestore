@@ -38,6 +38,7 @@
 
 <%@ page import ="java.sql.*" %>
 <%
+    
     String userid = request.getParameter("uname");    
     String pwd = request.getParameter("pass");
     Class.forName("com.mysql.jdbc.Driver");
@@ -53,10 +54,12 @@
           if(rs.getInt(1) == 5){
           // admin 
           session.setAttribute("userid", userid);
+          //session.setAttribute("pwd", pwd);
           response.sendRedirect("admin.jsp");
           }else{
               // user
               session.setAttribute("userid", userid);
+              //session.setAttribute("pwd", pwd);
               response.sendRedirect("mainpage.jsp");
           }
             

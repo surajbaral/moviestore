@@ -7,21 +7,20 @@ package Servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
 import javax.servlet.http.HttpSession;
 import logic.*;
-
 /**
  *
  * @author Suraj
  */
-@WebServlet(name = "ShoppingCart", urlPatterns = {"/ShoppingCart"})
-public class ShoppingCart extends HttpServlet {
+@WebServlet(name = "DeleteItem", urlPatterns = {"/DeleteItem"})
+public class DeleteItem extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,18 +34,33 @@ public class ShoppingCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String name = request.getParameter("mname");
+          HttpSession session = request.getSession();
+        Cart shoppingCart;
+        shoppingCart = (Cart) session.getAttribute("cart");
+        shoppingCart.deleteFromCart(name);
+        session.setAttribute("cart", shoppingCart);
+         shoppingCart = (Cart) session.getAttribute("cart");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShoppingCart</title>");            
+            out.println("<title>Servlet DeleteItem</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShoppingCart at " + request.getContextPath() + "</h1>");
+            HashMap<String, Integer> items = shoppingCart.getCartItems();
+            out.println("<table border='1px'>");
+             
+            for(String key: items.keySet()){
+                out.println("<form action='DeleteItem'><input type='hidden' name='name' value='"+key+"'><tr><td>"+key+" - </td><td>"+"$"+items.get(key)+"</td><td><input type='submit' value='delete'></td></tr></form>");
+//                  out.println("<tr><td>"+key+" - </td><td>"+"$"+items.get(key)+"</td></tr>");
+            }
+            out.println("<table>");
             out.println("</body>");
             out.println("</html>");
         }
+    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -62,17 +76,6 @@ public class ShoppingCart extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String action = request.getParameter("action");
-        //ProductModel pm = new ProductModel(); 
-        HttpSession session = request.getSession();
-        if(action.equals("Order")){
-            if (session.getAttribute("cart")==null){
-              //  List <Movie> cart = new ArrayList<Movie>();
-                
-            }else{
-                
-            }
-        }
     }
 
     /**
